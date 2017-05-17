@@ -29,11 +29,8 @@ public class PhoneNumberFactoryTest {
 
         // : When
         PhoneNumber phoneNumber = null;
-        try {
-            phoneNumber = PhoneNumberFactory.createPhoneNumberSafely(areaCode, centralOfficeCode, phoneLineCode);
-        } catch (InvalidPhoneNumberFormatException e) {
-            e.printStackTrace();
-        }
+        phoneNumber = PhoneNumberFactory.createPhoneNumberSafely(areaCode, centralOfficeCode, phoneLineCode);
+
 
         // : Then
         Assert.assertEquals(null, phoneNumber);
@@ -48,11 +45,9 @@ public class PhoneNumberFactoryTest {
 
         // : When
         PhoneNumber phoneNumber = null;
-        try {
-            phoneNumber = PhoneNumberFactory.createPhoneNumberSafely(areaCode, centralOfficeCode, phoneLineCode);
-        } catch (InvalidPhoneNumberFormatException e) {
-            e.printStackTrace();
-        }
+
+        phoneNumber = PhoneNumberFactory.createPhoneNumberSafely(areaCode, centralOfficeCode, phoneLineCode);
+
 
         // : Then
         Assert.assertEquals(phoneNumber.getAreaCode(), areaCode.toString());
@@ -67,11 +62,9 @@ public class PhoneNumberFactoryTest {
 
         // : When
         PhoneNumber phoneNumber = null;
-        try {
-            phoneNumber = PhoneNumberFactory.createPhoneNumberSafely(areaCode, centralOfficeCode, phoneLineCode);
-        } catch (InvalidPhoneNumberFormatException e) {
-            e.printStackTrace();
-        }
+
+        phoneNumber = PhoneNumberFactory.createPhoneNumberSafely(areaCode, centralOfficeCode, phoneLineCode);
+
 
         // : Then
         Assert.assertEquals(phoneNumber.getCentralOfficeCode(), centralOfficeCode.toString());
@@ -87,31 +80,27 @@ public class PhoneNumberFactoryTest {
 
         // : When
         PhoneNumber phoneNumber = null;
-        try {
-            phoneNumber = PhoneNumberFactory.createPhoneNumberSafely(areaCode, centralOfficeCode, phoneLineCode);
-        } catch (InvalidPhoneNumberFormatException e) {
-            e.printStackTrace();
-        }
+
+        phoneNumber = PhoneNumberFactory.createPhoneNumberSafely(areaCode, centralOfficeCode, phoneLineCode);
+
 
         // : Then
         Assert.assertEquals(phoneNumber.getPhoneLineCode(), phoneLineCode.toString());
     }
 
     @Test
-    public void testCreateRandomPhoneNumber() throws InvalidPhoneNumberFormatException{
+    public void testCreateRandomPhoneNumber() throws InvalidPhoneNumberFormatException {
         Logger.getGlobal().setLevel(Level.OFF);
         // : Given
         PhoneNumber[] phoneNumbers = PhoneNumberFactory.createRandomPhoneNumberArray(999);
 
         // : When
-        try {
-            for (PhoneNumber phoneNumber : phoneNumbers) {
 
-                Assert.assertTrue(phoneNumber != null);
+        for (PhoneNumber phoneNumber : phoneNumbers) {
 
-            }
-        } catch (NullPointerException npe){
-            System.out.println( "No numbers present");
+            Assert.assertTrue(phoneNumber != null);
         }
+
+
     }
 }

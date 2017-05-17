@@ -20,7 +20,7 @@ public final class PhoneNumberFactory {
      * @param phoneNumberCount - number of PhoneNumber objects to instantiate
      * @return array of randomly generated PhoneNumber objects
      */ //TODO - Implement logic
-    public static PhoneNumber[] createRandomPhoneNumberArray(int phoneNumberCount) throws InvalidPhoneNumberFormatException {
+    public static PhoneNumber[] createRandomPhoneNumberArray(int phoneNumberCount) {
         PhoneNumber[] phoneNumbers = new PhoneNumber[phoneNumberCount];
         for (PhoneNumber pn : phoneNumbers){
             pn = createRandomPhoneNumber();
@@ -38,9 +38,9 @@ public final class PhoneNumberFactory {
      * @return an instance of PhoneNumber with randomly generated phone number value
      */ //TODO - Implement logic
 
-    private static PhoneNumber createRandomPhoneNumber() throws InvalidPhoneNumberFormatException {
-        return createPhoneNumberSafely(RandomNumberFactory.createInteger(111,999), RandomNumberFactory.createInteger(100,999), RandomNumberFactory.createInteger(1000,9999));
-    }
+    private static PhoneNumber createRandomPhoneNumber() {
+            return createPhoneNumberSafely(RandomNumberFactory.createInteger(111, 999), RandomNumberFactory.createInteger(100, 999), RandomNumberFactory.createInteger(1000, 9999));
+        }
 
 
     /**
@@ -50,19 +50,13 @@ public final class PhoneNumberFactory {
      * @return a new phone number object
      */ //TODO - if input is valid, return respective PhoneNumber object, else return null
 
-    public static PhoneNumber createPhoneNumberSafely(int areaCode, int centralOfficeCode, int phoneLineCode) throws InvalidPhoneNumberFormatException {
-        StringBuilder phoneNumberString = new StringBuilder();
-
+    public static PhoneNumber createPhoneNumberSafely(int areaCode, int centralOfficeCode, int phoneLineCode) {
         try {
-            phoneNumberString.append("(");
-            phoneNumberString.append(areaCode);
-            phoneNumberString.append(")-");
-            phoneNumberString.append(centralOfficeCode);
-            phoneNumberString.append("-");
-            phoneNumberString.append(phoneLineCode);
-            return new PhoneNumber(phoneNumberString.toString());
+            String phoneNumberString = String.format("(%s)-%s-%s", areaCode, centralOfficeCode, phoneLineCode);
+            return new PhoneNumber(phoneNumberString);
         } catch (InvalidPhoneNumberFormatException e){
-            LoggerFactory.getLogger("(%s)-%s-%s is not a valid phone number");
+            logger.warn("(%s)-%s-%s is not a valid phone number");
+            logger.info("(%s)-%s-%s is not a valid phone number");
             return null;
         }
 
